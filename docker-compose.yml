@@ -18,6 +18,8 @@ services:
       DB_USER: user
       DB_PASSWORD: password
       DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: db
     depends_on:
       - db
     ports:
