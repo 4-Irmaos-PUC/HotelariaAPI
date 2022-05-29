@@ -2,4 +2,4 @@ FROM node:alpine
 WORKDIR /usr/src/app
 COPY ./src .
 EXPOSE 3000
-CMD npm install && npx sequelize-cli db:migrate && npm run build
+CMD npm install && npx sequelize-cli db:migrate && npm run build && ./node_modules/pm2/bin/pm2-runtime start index.js
