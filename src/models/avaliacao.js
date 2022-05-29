@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     nota: DataTypes.INTEGER,
     idReserva: DataTypes.INTEGER
   }, {
+    freezeTableName: true,
     sequelize,
     modelName: 'Avaliacao',
   });
