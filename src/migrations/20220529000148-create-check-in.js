@@ -1,39 +1,21 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reserva', {
+    await queryInterface.createTable('CheckIn', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      dataInicio: {
+      dataChegada: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      dataFim: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      idCliente: {
+      idReserva: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Cliente',
-          key: 'id'
-        }
-      },
-      idHotel: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Hotel',
-          key: 'id'
-        }
-      },
-      idQuarto: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Quarto',
+          model: 'Reserva',
           key: 'id'
         }
       },
@@ -48,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reserva');
+    await queryInterface.dropTable('CheckIn');
   }
 };

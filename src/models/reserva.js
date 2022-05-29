@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Reserva.init({
     dataInicio: DataTypes.DATE,
-    dataFim: DataTypes.DATE
+    dataFim: DataTypes.DATE,
+    idCliente: DataTypes.INTEGER,
+    idQuarto: DataTypes.INTEGER,
+    idHotel: DataTypes.INTEGER
   }, {
     sequelize,
     freezeTableName: true,
