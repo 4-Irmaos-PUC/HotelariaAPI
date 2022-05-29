@@ -1,6 +1,7 @@
 import Controller from './Controller';
 import ModelController from './ModelController';
 import { Request, Response } from 'express';
+import Crypto from '../util/Crypto';
 
 export default class ClienteController implements ModelController {
     private static modelName = 'Cliente';
@@ -11,6 +12,7 @@ export default class ClienteController implements ModelController {
     };
 
     public static async put(req: Request, res: Response): Promise<void> {
+        ClienteController.encryptSenha(req);
         return ClienteController.controller().put(req, res);
     };
 
@@ -24,5 +26,9 @@ export default class ClienteController implements ModelController {
 
     private static controller() {
         return Controller.createController(this.modelName, this.fieldsToManipulate);
+    }
+
+    private static encryptSenha(req: Request) {
+        req.body.senha = Crypto.encrypt(req.body.senha);
     }
 }

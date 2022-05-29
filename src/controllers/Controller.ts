@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import ModelController from './ModelController';
 const models = require('../models');
 
-export default class Controller {
+export default class Controller implements ModelController {
     private modelName: string;
     private fieldsToManipulate: string[];
 

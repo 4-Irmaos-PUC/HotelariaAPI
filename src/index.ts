@@ -1,3 +1,5 @@
+import LoginController from "./controllers/LoginController";
+
 const express = require("express");
 const app = express();
 const PORT = 3000;
@@ -15,16 +17,17 @@ const AvaliacaoRouter = require('./routers/AvaliacaoRouter');
 const SolicitacaoRouter = require('./routers/SolicitacaoRouter');
 const ServicoRouter = require('./routers/ServicoRouter');
 
+app.post("/login", LoginController.login);
 app.use("/cliente", ClienteRouter);
-app.use("/quarto", QuartoRouter);
-app.use("/hotel", HotelRouter);
-app.use("/reserva", ReservaRouter);
-app.use("/checkin", CheckInRouter);
-app.use("/checkout", CheckOutRouter);
-app.use("/notafiscal", NotaFiscalRouter);
-app.use("/avaliacao", AvaliacaoRouter);
-app.use("/solicitacao", SolicitacaoRouter);
-app.use("/servico", ServicoRouter);
+app.use("/quarto", LoginController.authenticate, QuartoRouter);
+app.use("/hotel", LoginController.authenticate, HotelRouter);
+app.use("/reserva", LoginController.authenticate, ReservaRouter);
+app.use("/checkin", LoginController.authenticate, CheckInRouter);
+app.use("/checkout", LoginController.authenticate, CheckOutRouter);
+app.use("/notafiscal", LoginController.authenticate, NotaFiscalRouter);
+app.use("/avaliacao", LoginController.authenticate, AvaliacaoRouter);
+app.use("/solicitacao", LoginController.authenticate, SolicitacaoRouter);
+app.use("/servico", LoginController.authenticate, ServicoRouter);
 
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`);
