@@ -1,4 +1,5 @@
 import LoginController from "./controllers/LoginController";
+import WelcomeController from "./controllers/WelcomeController";
 
 const express = require("express");
 const app = express();
@@ -17,6 +18,7 @@ const AvaliacaoRouter = require('./routers/AvaliacaoRouter');
 const SolicitacaoRouter = require('./routers/SolicitacaoRouter');
 const ServicoRouter = require('./routers/ServicoRouter');
 
+app.get("/", WelcomeController.post);
 app.post("/login", LoginController.login);
 app.use("/cliente", ClienteRouter);
 app.use("/quarto", LoginController.authenticate, QuartoRouter);
