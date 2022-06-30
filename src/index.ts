@@ -17,6 +17,10 @@ const NotaFiscalRouter = require('./routers/NotaFiscalRouter');
 const AvaliacaoRouter = require('./routers/AvaliacaoRouter');
 const SolicitacaoRouter = require('./routers/SolicitacaoRouter');
 const ServicoRouter = require('./routers/ServicoRouter');
+const RelatorioReservaRouter = require('./routers/analitic/RelatorioReservaRouter');
+const RelatorioCheckInRouter = require('./routers/analitic/RelatorioCheckInRouter');
+const RelatorioCheckOutRouter = require('./routers/analitic/RelatorioCheckOutRouter');
+const RelatorioServicoRouter = require('./routers/analitic/RelatorioServicoRouter');
 
 app.get("/", WelcomeController.post);
 app.post("/login", LoginController.login);
@@ -30,6 +34,10 @@ app.use("/notafiscal", LoginController.authenticate, NotaFiscalRouter);
 app.use("/avaliacao", LoginController.authenticate, AvaliacaoRouter);
 app.use("/solicitacao", LoginController.authenticate, SolicitacaoRouter);
 app.use("/servico", LoginController.authenticate, ServicoRouter);
+app.use("/analitic", LoginController.authenticate, RelatorioReservaRouter);
+app.use("/analitic", LoginController.authenticate, RelatorioCheckInRouter);
+app.use("/analitic", LoginController.authenticate, RelatorioCheckOutRouter);
+app.use("/analitic", LoginController.authenticate, RelatorioServicoRouter);
 
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`);
